@@ -65,7 +65,11 @@ for i, prod in enumerate(products):
     cbar = plt.colorbar(mesh, ax=ax, pad=0.02, shrink=0.9)
     cbar.set_label('Reflectivity (dBZ)')
 
+    plt.title("Hurricane Isaias | Radar Loop", fontname='Rubik', fontweight='bold', loc='left')
+    plt.title(f"Time: {nex.metadata['prod_time']}Z", fontname='Rubik', loc='right')
+
     outfile = outdir / f'frame_{i:03d}.png'
     plt.savefig(outfile, bbox_inches='tight')
     plt.close(fig)
+
 
