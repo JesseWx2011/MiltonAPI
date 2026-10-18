@@ -1,0 +1,5 @@
+matplotlib
+cartopy
+numpy
+metpy
+boto3
