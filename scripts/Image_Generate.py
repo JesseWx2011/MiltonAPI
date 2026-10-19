@@ -94,9 +94,7 @@ for i, prod in enumerate(products):
     plt.title(f"Time: {nex.metadata['prod_time']}Z", fontname='Rubik', loc='right')
 
     outfile = outdir / f'frame_{i:03d}.png'
-   # Only run this line of code if running locally.
-    # plt.savefig(outfile, bbox_inches='tight')
-    
+    plt.savefig(outfile, bbox_inches='tight')    
     plt.close(fig)
 
 def create_gif_from_images(image_folder, output_path, duration=500):
