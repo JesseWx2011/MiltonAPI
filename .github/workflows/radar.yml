@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 0 * * *' # Optional: runs daily, or trigger manually via workflow_dispatch
+    - cron: '*/30 * * * *' # Optional: runs daily, or trigger manually via workflow_dispatch
   workflow_dispatch:
 
 jobs:
