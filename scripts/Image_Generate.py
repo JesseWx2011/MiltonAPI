@@ -4,7 +4,6 @@ import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 import matplotlib.gridspec as gridspec
 import matplotlib.pyplot as plt
-matplotlib.use('Agg')
 import numpy as np
 
 from metpy.calc import azimuth_range_to_lat_lon
@@ -83,7 +82,7 @@ for i, prod in enumerate(products):
     ax.add_feature(USCOUNTIES.with_scale('5m'), linewidth=0.4)
 
     for name, city_lat, city_lon in cities:
-        ax.scatter(city_lat, city_lon, marker='o', transform=ccrs.PlateCarree())
+        ax.scatter(city_lat, city_lon, marker='o', rasterized=True, c='red' transform=ccrs.PlateCarree())
         ax.text(city_lat + 0.02, city_lon + 0.02, name, horizontalalignment='left', transform=ccrs.PlateCarree())
         
     mesh = ax.pcolormesh(lon, lat, data, cmap=cmap, norm=norm, transform=ccrs.PlateCarree())
