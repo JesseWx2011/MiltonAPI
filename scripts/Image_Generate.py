@@ -28,8 +28,8 @@ import shutil
 
 site = 'MOB'
 product = 'N0B'
-start = datetime.now()
-end = start + timedelta(hours=3)
+start = datetime.now() - timedelta(hours=3)
+end = datetime.now()
 print(end)
 
 products = list(NEXRADLevel3Archive().get_range(site, product, start, end))
