@@ -4,6 +4,7 @@ import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 import matplotlib.gridspec as gridspec
 import matplotlib.pyplot as plt
+matplotlib.use('Agg')
 import numpy as np
 
 from metpy.calc import azimuth_range_to_lat_lon
