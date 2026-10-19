@@ -114,6 +114,6 @@ def create_gif_from_images(image_folder, output_path, duration=500):
     print(f"GIF animation saved at: {output_path}")
 
 
-create_gif_from_images('./radar_images/', 'radar_anim.gif', duration=250)
+# create_gif_from_images('./radar_images/', 'radar_anim.gif', duration=250)
 # shutil.rmtree("./radar_images")
 # print("radar_images folder was removed.")
