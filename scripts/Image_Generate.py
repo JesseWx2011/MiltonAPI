@@ -46,18 +46,6 @@ outdir.mkdir(exist_ok=True) # Check if the directory does or doesn't exist
 extent = [-89.736328, -85.858154, 29.667313, 31.877162]
 norm, cmap = colortables.get_with_steps('NWSStormClearReflectivity', -20, 0.5)
 
-cities = [
-    ("Voyage Church", 30.570695329906346, -87.09711165072093),
-    ("Milton", 30.632803002811833, -87.03930555764497),
-    ("Pace", 30.599724087364958, -87.16054375879791),
-    ("Dickerson City", 30.482220529898765, -87.06075155287641),
-    ("Bagdad", 30.598709160593675, -87.03139974482846),
-    ("Cantonment", 30.60490230215399, -87.34523275805115),
-    ("Navarre", 30.412025372170604, -86.9130153953753),
-    ("Midway", 30.40298425792511, -87.00024968135658),
-    ("Point Baker", 30.689952132692575, -87.0590298652745)
-]
-
 for i, prod in enumerate(products):
     scanscompleted = (i+1)
     percentcomplete = round((scanscompleted / totalscans) * 100)
@@ -78,12 +66,25 @@ for i, prod in enumerate(products):
 
     ax = plt.axes(projection=ccrs.LambertConformal(central_longitude=nex.lon, central_latitude=nex.lat))
 
+    cities = [
+    ("Milton", 30.632803002811833, -87.03930555764497),
+    ("Pace", 30.599724087364958, -87.16054375879791),
+    ("Dickerson City", 30.482220529898765, -87.06075155287641),
+    ("Bagdad", 30.598709160593675, -87.03139974482846),
+    ("Cantonment", 30.60490230215399, -87.34523275805115),
+    ("Navarre", 30.412025372170604, -86.9130153953753),
+    ("Midway", 30.40298425792511, -87.00024968135658),
+    ("Point Baker", 30.689952132692575, -87.0590298652745)
+    ]
+
+   
+    for name, city_lat, city_lon in cities:
+        ax.scatter(city_lat, city_lon, marker='o', s=4, rasterized=True, c='red', transform=ccrs.PlateCarree())
+       # ax.text(city_lat + 0.02, city_lon + 0.02, name, horizontalalignment='left', transform=ccrs.PlateCarree())
+
+
     ax.set_extent(extent, ccrs.PlateCarree())
     ax.add_feature(USCOUNTIES.with_scale('5m'), linewidth=0.4)
-
-    for name, city_lat, city_lon in cities:
-        ax.scatter(city_lat, city_lon, marker='o', rasterized=True, c='red', transform=ccrs.PlateCarree())
-        ax.text(city_lat + 0.02, city_lon + 0.02, name, horizontalalignment='left', transform=ccrs.PlateCarree())
         
     mesh = ax.pcolormesh(lon, lat, data, cmap=cmap, norm=norm, transform=ccrs.PlateCarree())
 
@@ -96,7 +97,7 @@ for i, prod in enumerate(products):
     outfile = outdir / f'frame_{i:03d}.png'
     
     plt.axis('off')
-    plt.savefig(outfile, bbox_inches='tight', dpi=200)    
+    plt.savefig(outfile, bbox_inches='tight')    
     plt.close(fig)
 
 def create_gif_from_images(image_folder, output_path, duration=500):
