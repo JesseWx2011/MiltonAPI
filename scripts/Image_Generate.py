@@ -28,8 +28,13 @@ import shutil
 
 site = 'MOB'
 product = 'N0B'
-start = datetime.now()
-end = start + timedelta(hours=3)
+
+# python 3.11 datetime and timedelta functions differently than python >3.12
+
+start = datetime.now() - timedelta(hours=3)
+end = datetime.now()
+#start = datetime.now()
+# end = start + timedelta(hours=3)
 
 products = list(NEXRADLevel3Archive().get_range(site, product, start, end))
 print(f"{len(products)} radar scans were found from radar site {site}")
