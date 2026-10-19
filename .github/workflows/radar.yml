@@ -36,5 +36,5 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add .
-          git commit -m "Auto-generate Matplotlib plot [skip ci]" || echo "No changes to commit"
+          git commit -m "Radar Image Updated (MOB)" || echo "No changes to commit"
           git push
