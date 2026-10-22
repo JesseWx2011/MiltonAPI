@@ -1,4 +1,4 @@
-name: Radar Image upload
+name: Update Satellite Image
 
 on:
   push:
