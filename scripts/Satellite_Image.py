@@ -31,4 +31,4 @@ goes_timestamp = g.t.dt.strftime('%H:%M UTC %m/%d/%Y').item()
 
 plt.title(f"{goes_timestamp}", fontsize=10, loc="right")
 plt.title(f"Latest Satellite Image \n ©2023-{year} windowclean.net", fontsize=9, loc="left")
-plt.show()
+plt.savefig("SatelliteImage.png", dpi=96)
