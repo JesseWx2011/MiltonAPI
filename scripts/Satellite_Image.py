@@ -9,11 +9,7 @@ from metpy.plots import USCOUNTIES
 from dateutil import tz
 from datetime import datetime
 
-utc_time = tz.tzutc()
-local_time = tz.gettz("America/Chicago")
-
 year = datetime.today().year
-print(year)
 
 g = goes_latest(satellite="goes19", product="ABI", return_as="xarray")
 # g = goes_latest(satellite="goes19", product="ABI", return_as="xarray")
@@ -27,8 +23,10 @@ ax.add_feature(cfeature.STATES, linewidth=2, edgecolor='white')
 ax.add_feature(USCOUNTIES.with_scale('5m'), linewidth=0.4, edgecolor='white')
 ax.coastlines()
 
-goes_timestamp = g.t.dt.strftime('%H:%M UTC %m/%d/%Y').item()
+goes_timestamp = g.t.dt.strftime('%H:%M UTC \n %m/%d/%Y').item()
 
 plt.title(f"{goes_timestamp}", fontsize=10, loc="right")
 plt.title(f"Latest Satellite Image \n ©2023-{year} windowclean.net", fontsize=9, loc="left")
-plt.savefig("SatelliteImage.png", dpi=96)
+plt.savefig("SatelliteImage.png", dpi=96, bbox_inches='tight')
+print("Satellite Image Rendered")
+plt.show()
