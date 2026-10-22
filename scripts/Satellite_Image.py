@@ -16,6 +16,7 @@ g = goes_latest(satellite="goes19", product="ABI", return_as="xarray")
 
 extent = [-91.021729, -83.309326, 27.223260, 34.052817]
 
+fig = plt.figure(figsize=(12,8))
 ax = plt.subplot(projection=g.rgb.crs)
 ax.set_extent(extent)
 ax.imshow(g.rgb.TrueColor(), **g.rgb.imshow_kwargs)
