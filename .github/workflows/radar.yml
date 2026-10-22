@@ -5,14 +5,14 @@ on:
     branches:
       - main
   schedule:
-    - cron: '*/30 * * * *' # Optional: runs daily, or trigger manually via workflow_dispatch
+    - cron: '*/30 * * * *'
   workflow_dispatch:
 
 jobs:
   build-and-upload:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Required to commit and push changes back to the repo
+      contents: write
 
     steps:
       - name: Checkout repository
