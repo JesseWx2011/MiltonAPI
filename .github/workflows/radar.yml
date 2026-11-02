@@ -39,15 +39,17 @@ jobs:
           git commit -m "Radar Image Updated (MOB)" || echo "No changes to commit"
           git push
 
-       deploy:
-          name: Deploy
-          runs-on: ubuntu-latest
-          steps:
-           - uses: actions/checkout@master
-           - name: push-ftp
-             uses: myuser/my-action@releases/v1
-             with:
-             url: ${{ secrets.FTP_SERVER }}}
-             files: git diff --name-only HEAD~
-             user: ${{ secrets.FTP_USERNAME }}
-             password: ${{ secrets.FTP_PASSWORD }}
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: build-and-upload
+    steps:
+      - uses: actions/checkout@master
+
+      - name: push-ftp
+        uses: myuser/my-action@releases/v1
+        with:
+          url: ${{ secrets.FTP_SERVER }}
+          files: git diff --name-only HEAD~
+          user: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
