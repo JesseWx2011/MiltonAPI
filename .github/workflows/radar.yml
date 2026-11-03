@@ -48,7 +48,7 @@ jobs:
       - name: ftp-upload-action
         uses: GenieTim/ftp-action@v4.0.1
         with:
-          url: ${{ secrets.FTP_SERVER }}
+          url: '31.170.161.144'
           files: git diff --name-only HEAD~
           user: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
