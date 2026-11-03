@@ -45,9 +45,8 @@ jobs:
     needs: build-and-upload
     steps:
       - uses: actions/checkout@master
-
       - name: push-ftp
-        uses: myuser/my-action@releases/v1
+        uses: genietim/ftp-action@releases/v4
         with:
           url: ${{ secrets.FTP_SERVER }}
           files: git diff --name-only HEAD~
