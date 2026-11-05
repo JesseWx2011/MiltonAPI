@@ -151,7 +151,7 @@ import os
 session = ftplib.FTP(os.environ.get('FTP_SERVER'),os.environ.get('FTP_USERNAME'),os.environ.get('FTP_PASSWORD'))
 file = open('radar_anim.gif','rb')
 session.storbinary('STOR ./images/radar_anim.gif', file)
-file.close()
+
 session.quit()
 
 # Delete the radar_images directory and wrap up the script.
