@@ -23,7 +23,7 @@ from metpy.remote import NEXRADLevel3Archive
 from metpy.units import units
 
 import os
-import ftplib
+from ftplib import FTP
 from PIL import Image
 import shutil
 
@@ -145,17 +145,26 @@ create_gif_from_images('./radar_images/', 'radar_anim.gif', duration=250)
 # Posted by K Z, modified by community. See post 'Timeline' for change history
 # Retrieved 2026-11-05, License - CC BY-SA 4.0
 
-from ftplib import FTP
-import os
-
 host = os.environ.get('FTP_SERVER')
 user = os.environ.get('FTP_USERNAME')
 code = os.environ.get('FTP_PASSWORD')
-session = FTP(host, user, code)
-file = open('./radar_anim.gif','rb')
-session.storbinary('STOR ./images/radar_anim.gif', file)
+print(host, user, code)
 
-session.quit()
+file = open("./radar_anim.gif", "rb")
+
+if not all([host, user, code]):
+  raise ValueError("Uh oh! Looks like one of the variables is either missing, or a typo was made in one of them.")
+
+ftp = FTP(host)
+ftp.connect(host)
+ftp.login(user, code)
+ftp.cwd("./images/")
+ftp.storbinary('STOR radar_anim.gif', file)
+print("Uploading radar images")
+
+ftp.quit()
+ftp.close()
+
 
 # Delete the radar_images directory and wrap up the script.
 shutil.rmtree("./radar_images")
