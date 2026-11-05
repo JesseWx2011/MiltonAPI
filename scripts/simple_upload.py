@@ -8,6 +8,7 @@ code = os.environ.get('FTP_PASSWORD')
 file = open("./radar_anim.gif", "rb")
 
 ftp = FTP(host)
+ftp.connect(host)
 ftp.login(user, code)
 ftp.cwd("./images/")
 ftp.storbinary('STOR radar_anim.gif', file)
