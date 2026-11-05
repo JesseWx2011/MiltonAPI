@@ -3,4 +3,3 @@ cartopy
 numpy
 metpy
 boto3
-ftplib
