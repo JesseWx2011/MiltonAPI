@@ -23,6 +23,7 @@ from metpy.remote import NEXRADLevel3Archive
 from metpy.units import units
 
 import os
+import ftplib
 from PIL import Image
 import shutil
 
@@ -139,5 +140,20 @@ def create_gif_from_images(image_folder, output_path, duration=500):
 
 
 create_gif_from_images('./radar_images/', 'radar_anim.gif', duration=250)
+
+# Source - https://stackoverflow.com/a/12613970
+# Posted by K Z, modified by community. See post 'Timeline' for change history
+# Retrieved 2026-11-05, License - CC BY-SA 4.0
+
+import ftplib
+import os
+
+session = ftplib.FTP(os.environ.get('FTP_SERVER'),os.environ.get('FTP_USERNAME'),os.environ.get('FTP_PASSWORD'))
+file = open('radar_anim.gif','rb')
+session.storbinary('STOR ./images/radar_anim.gif', file)
+file.close()
+session.quit()
+
+# Delete the radar_images directory and wrap up the script.
 shutil.rmtree("./radar_images")
 print("radar_images folder was removed.")
