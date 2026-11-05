@@ -148,7 +148,10 @@ create_gif_from_images('./radar_images/', 'radar_anim.gif', duration=250)
 import ftplib
 import os
 
-session = ftplib.FTP(f"{os.environ.get('FTP_SERVER')}",f"{os.environ.get('FTP_SERVER')}",f"{os.environ.get('FTP_SERVER')}")
+host = os.environ.get('FTP_SERVER')
+user = os.environ.get('FTP_USERNAME')
+code = os.environ.get('FTP_PASSWORD')
+session = ftplib.FTP(host, user, code)
 file = open('radar_anim.gif','rb')
 session.storbinary('STOR ./images/radar_anim.gif', file)
 
