@@ -7,7 +7,7 @@ code = os.environ.get('FTP_PASSWORD')
 
 file = open("./radar_anim.gif", "rb")
 
-if not all([host, user, code]:
+if not all([host, user, code]):
   raise ValueError("Uh oh! Looks like one of the variables is either missing, or a typo was made in one of them.")
 
 ftp = FTP(host)
