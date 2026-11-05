@@ -92,8 +92,8 @@ for i, prod in enumerate(products):
     cbar = plt.colorbar(mesh, ax=ax, pad=0.02, shrink=0.9)
     cbar.set_label('Reflectivity (dBZ)')
 
-    plt.title("Radar Loop | Latest", fontname='Rubik', fontweight='bold', loc='left')
-    plt.title(f"Time: {nex.metadata['prod_time']}Z", fontname='Rubik', loc='right')
+    plt.title("Radar Loop | Latest", fontweight='bold', loc='left')
+    plt.title(f"Time: {nex.metadata['prod_time']}Z", loc='right')
 
     outfile = outdir / f'frame_{i:03d}.png'
     
@@ -145,14 +145,14 @@ create_gif_from_images('./radar_images/', 'radar_anim.gif', duration=250)
 # Posted by K Z, modified by community. See post 'Timeline' for change history
 # Retrieved 2026-11-05, License - CC BY-SA 4.0
 
-import ftplib
+from ftplib import FTP
 import os
 
 host = os.environ.get('FTP_SERVER')
 user = os.environ.get('FTP_USERNAME')
 code = os.environ.get('FTP_PASSWORD')
-session = ftplib.FTP(host, user, code)
-file = open('radar_anim.gif','rb')
+session = FTP(host, user, code)
+file = open('./radar_anim.gif','rb')
 session.storbinary('STOR ./images/radar_anim.gif', file)
 
 session.quit()
