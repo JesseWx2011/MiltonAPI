@@ -148,7 +148,6 @@ create_gif_from_images('./radar_images/', 'radar_anim.gif', duration=250)
 host = os.environ.get('FTP_SERVER')
 user = os.environ.get('FTP_USERNAME')
 code = os.environ.get('FTP_PASSWORD')
-print(host, user, code)
 
 file = open("./radar_anim.gif", "rb")
 
