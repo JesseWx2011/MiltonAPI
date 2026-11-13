@@ -28,3 +28,12 @@ jobs:
 
       - name: Run Webcam Upload
         run: python ./scripts/webcam.py
+
+
+      - name: Upload to GitHub Repo
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add .
+          git commit -m "Update webcam image for selected date" || echo "No changes to commit"
+          git push
