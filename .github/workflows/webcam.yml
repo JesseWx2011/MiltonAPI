@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+  schedule:
+    - cron: '30 4 * * *'
+      timezone: 'Americ/Chicago'
   workflow_dispatch:
 
 jobs:
