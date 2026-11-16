@@ -8,6 +8,8 @@ import cartopy.feature as cfeature
 from metpy.plots import USCOUNTIES
 from dateutil import tz
 from datetime import datetime
+from ftplib import FTP
+
 
 year = datetime.today().year
 
