@@ -33,6 +33,10 @@ plt.title(f"Latest Satellite Image \n ©2023-{year} windowclean.net", fontsize=9
 plt.savefig("SatelliteImage.png", dpi=96, bbox_inches='tight')
 print("Satellite Image Rendered")
 
+host = os.environ.get('FTP_SERVER')
+user = os.environ.get('FTP_USERNAME')
+code = os.environ.get('FTP_PASSWORD')
+
 file = open("./SatelliteImage.png", "rb")
 
 ftp = FTP(host)
