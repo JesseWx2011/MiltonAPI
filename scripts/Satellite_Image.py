@@ -9,6 +9,7 @@ from metpy.plots import USCOUNTIES
 from dateutil import tz
 from datetime import datetime
 from ftplib import FTP
+import os
 
 
 year = datetime.today().year
