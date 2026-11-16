@@ -30,3 +30,12 @@ plt.title(f"{goes_timestamp}", fontsize=10, loc="right")
 plt.title(f"Latest Satellite Image \n ©2023-{year} windowclean.net", fontsize=9, loc="left")
 plt.savefig("SatelliteImage.png", dpi=96, bbox_inches='tight')
 print("Satellite Image Rendered")
+
+file = open("./SatelliteImage.png", "rb")
+
+ftp = FTP(host)
+ftp.connect(host)
+ftp.login(user, code)
+ftp.cwd("./images/")
+ftp.storbinary('STOR radar_anim.gif', file)
+print("Uploading radar images")
